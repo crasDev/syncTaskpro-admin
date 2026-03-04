@@ -4,20 +4,31 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAuth0 } from '@auth0/auth0-angular';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
-import { authInterceptor } from './core/interceptors/auth.interceptor';
-import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { authErrorInterceptor } from './core/interceptors/auth-error.interceptor';
+
+const env = window.__env || {};
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor])),
+    provideHttpClient(withInterceptors([authErrorInterceptor])),
     provideAuth0({
-      domain: environment.auth0.domain,
-      clientId: environment.auth0.clientId,
+      domain: env.AUTH0_DOMAIN || environment.auth0.domain,
+      clientId: env.AUTH0_ADMIN_CLIENT_ID || environment.auth0.clientId,
       authorizationParams: {
         redirect_uri: environment.auth0.redirectUri,
         audience: environment.auth0.audience,
+        scope: 'openid profile email',
+      },
+      cacheLocation: 'memory',
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: `${env.API_URL || environment.apiUrl}/*`,
+            allowAnonymous: false,
+          },
+        ],
       },
     }),
   ],
