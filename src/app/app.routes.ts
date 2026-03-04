@@ -24,6 +24,8 @@ export const routes: Routes = [
     canActivate: [authGuard, adminAuthGuard],
     children: [
       { path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent) },
+      { path: 'companies', loadComponent: () => import('./features/companies/company-list/company-list.component').then(m => m.CompanyListComponent) },
+      { path: 'companies/:id', loadComponent: () => import('./features/companies/company-detail/company-detail.component').then(m => m.CompanyDetailComponent) },
       { path: 'tenants', loadComponent: () => import('./features/tenants/tenants.component').then(m => m.TenantsComponent) },
       { path: 'users', loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent) },
       { path: 'support', loadComponent: () => import('./features/support/support.component').then(m => m.SupportComponent) },
