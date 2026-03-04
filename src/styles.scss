@@ -1,6 +1,7 @@
 @use 'styles/variables';
 @use 'styles/typography';
 @use 'styles/glass';
+@use 'styles/backgrounds';
 
 @import 'tailwindcss';
 
@@ -12,8 +13,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 ::-webkit-scrollbar {
@@ -34,6 +34,6 @@ html, body {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--accent);
   text-decoration: none;
 }

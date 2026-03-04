@@ -6,8 +6,8 @@
 
 .sidebar {
   width: var(--sidebar-width);
-  background: var(--color-bg-secondary);
-  border-right: 1px solid var(--color-glass-border);
+  background: var(--bg-surface);
+  border-right: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -15,7 +15,7 @@
 
 .sidebar-header {
   padding: 20px;
-  border-bottom: 1px solid var(--color-glass-border);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .logo {
@@ -27,20 +27,20 @@
 .logo-img {
   width: 36px;
   height: 36px;
-  filter: drop-shadow(0 0 12px var(--color-accent-glow));
+  filter: drop-shadow(0 0 12px var(--glow-primary));
 }
 
 .logo-text {
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
 }
 
 .badge {
   font-size: 10px;
   font-weight: 600;
-  background: var(--color-primary);
+  background: var(--accent);
   color: white;
   padding: 2px 6px;
   border-radius: 4px;
@@ -58,7 +58,7 @@
   font-family: var(--font-display);
   font-size: 11px;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
   padding: 16px 12px 8px;
 }
@@ -69,7 +69,7 @@
   gap: 12px;
   padding: 10px 12px;
   border-radius: var(--glass-radius-sm);
-  color: var(--color-text-muted);
+  color: var(--text-secondary);
   text-decoration: none;
   font-family: var(--font-body);
   font-size: 14px;
@@ -78,13 +78,14 @@
   cursor: pointer;
 
   &:hover {
-    background: var(--color-glass-bg);
-    color: var(--color-text-primary);
+    background: var(--glass-bg);
+    color: var(--text-primary);
   }
 
   &.active {
-    background: var(--color-accent-glow);
-    color: var(--color-primary);
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border-left: 2px solid var(--accent);
   }
 }
 
@@ -97,7 +98,7 @@
 
 .topbar {
   height: var(--topbar-height);
-  border-bottom: 1px solid var(--color-glass-border);
+  border-bottom: 1px solid var(--glass-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -109,7 +110,7 @@
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--text-secondary);
 }
 
 .topbar-right {
@@ -124,20 +125,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-glass-bg);
+  background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--color-glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: 50%;
-  color: var(--color-text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-    box-shadow: 0 0 20px var(--color-accent-glow);
-    background: var(--color-accent-glow);
+    border-color: var(--glass-border-hover);
+    color: var(--accent);
+    box-shadow: 0 0 12px var(--glow-primary);
   }
 }
 
@@ -153,7 +153,7 @@
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
 
   img {

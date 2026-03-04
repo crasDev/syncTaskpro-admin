@@ -25,18 +25,24 @@ Read the master CLAUDE.md at `/SyncTaskPro/CLAUDE.md` first — always.
 
 ## Design System
 
-Glassmorphism dark theme with red accent (#FF2D55).
-Same design token architecture as syncTaskpro-web but with red branding
-to clearly distinguish admin from client app. Single mode (no switching).
+Refined glassmorphism dark theme with red accent (#FF2D55).
+Same token architecture as syncTaskpro-web but with red branding.
+Theme scheme (dark/light/system) and background customization via ThemeService.
+Settings page at `/admin/settings`.
+
+Semantic tokens: `--bg-base`, `--accent`, `--glass-bg`, `--text-primary`, etc.
+Ambient background with red-tinted orbs, noise texture, preset backgrounds.
+Glass cards use `::before` highlight, primary buttons use gradient fill.
 
 Fonts: Sora (display/headings), Inter (body text) — loaded from Google Fonts.
 
-Login page features animated red particle orbs, "ADMIN CONSOLE" neon badge,
-glass login card, and audit warning strip.
+Login page features animated red particle orbs, "ADMIN CONSOLE" badge,
+gradient login button, glass card, and audit warning strip.
 
 Style files:
-- `src/styles/_variables.scss` — CSS custom properties (red accent palette)
-- `src/styles/_glass.scss` — SCSS mixins (glass-card, glass-panel, glass-button, glass-input, neon-text, neon-border)
+- `src/styles/_variables.scss` — Refined CSS custom properties (red accent)
+- `src/styles/_backgrounds.scss` — Ambient orbs, noise texture
+- `src/styles/_glass.scss` — Refined glass mixins (glass-card, glass-card-glow, btn-primary, stat-value, badges)
 - `src/styles/_typography.scss` — Sora + Inter font, heading/paragraph styles
 - `src/styles.scss` — Imports all + Tailwind + scrollbar + reset
 
@@ -48,13 +54,16 @@ Style files:
 src/app/
   core/
     auth/           auth.guard.ts
+    theme/          theme.service.ts (theme scheme, background customization)
+    storage/        image-storage.service.ts (IndexedDB for custom backgrounds)
     interceptors/   auth.interceptor.ts, error.interceptor.ts
     api/generated/  NSwag-generated client (gitignored, never edit)
   shared/
     layouts/        app-shell.component.ts, auth-layout.component.ts
   features/
     auth/           login.component.ts, callback.component.ts
-    dashboard/      dashboard.component.ts
+    dashboard/      dashboard.component.ts (bento grid, stat cards)
+    settings/       settings.component.ts (theme switcher, background customization)
     tenants/        tenants.component.ts
     users/          users.component.ts
     support/        support.component.ts
@@ -116,4 +125,4 @@ Every component uses separate files — never inline templates or styles:
 
 ## Last Updated
 Date: 2026-03-04
-Session: Identity — topbar avatar/initials with UseAvatar toggle logic, profile loaded on callback
+Session: Design system refinement — refined glassmorphism tokens, ambient backgrounds, theme switcher, settings page, dashboard bento grid

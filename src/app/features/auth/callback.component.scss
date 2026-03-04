@@ -5,14 +5,14 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  background: var(--color-bg-primary, #060B14);
+  background: var(--bg-base, #060B14);
 }
 
 .spinner {
   width: 40px;
   height: 40px;
   border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top: 3px solid var(--color-primary, #FF2D55);
+  border-top: 3px solid var(--accent, #FF2D55);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -22,7 +22,7 @@
 }
 
 p {
-  color: var(--color-text-muted, #4A6FA5);
+  color: var(--text-secondary, #4A6FA5);
   font-family: var(--font-body, 'Inter', sans-serif);
   font-size: 14px;
 }

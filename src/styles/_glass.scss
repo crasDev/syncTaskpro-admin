@@ -1,81 +1,183 @@
 // ═══════════════════════════════════════════════
-// Glass Morphism Mixins & Utility Classes (Admin)
+// Glass Morphism — Refined Components (Admin)
+// Same structure as web, red accent via tokens
 // ═══════════════════════════════════════════════
 
 @mixin glass-card {
-  background: var(--color-glass-bg);
+  position: relative;
+  background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--color-glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 var(--color-glass-highlight);
+  box-shadow: var(--glass-shadow);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 40%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--glass-glow-shadow);
+  }
+}
+
+@mixin glass-card-glow {
+  @include glass-card;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(
+      ellipse 60% 40% at 50% 100%,
+      var(--glow-primary) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 }
 
 @mixin glass-panel {
-  background: rgba(255, 255, 255, 0.04);
+  position: relative;
+  background: var(--glass-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--color-glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius-lg);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
 
 @mixin glass-button {
-  background: var(--color-glass-bg);
+  background: var(--glass-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--color-glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: 50px;
-  color: var(--color-primary);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 
   &:hover {
-    background: var(--color-accent-glow);
-    border-color: var(--color-primary);
-    box-shadow: 0 0 24px var(--color-accent-glow);
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+  border: none;
+  border-radius: 50px;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 16px var(--glow-primary);
+
+  &:hover {
+    box-shadow: 0 6px 24px var(--glow-primary), 0 0 0 1px var(--accent);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
   }
 }
 
 @mixin glass-input {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--glass-radius-sm);
   padding: 12px 16px;
-  color: var(--color-text-primary);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 14px;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
   &::placeholder {
-    color: var(--color-text-muted);
+    color: var(--text-tertiary);
   }
 
   &:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px var(--color-accent-glow);
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 0 0 2px var(--glow-primary);
   }
 }
 
-@mixin neon-text {
-  color: var(--color-primary);
-  text-shadow: 0 0 20px var(--color-accent-glow);
+@mixin stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-@mixin neon-border {
-  border: 1px solid var(--color-primary);
-  box-shadow:
-    0 0 16px var(--color-accent-glow),
-    inset 0 0 16px rgba(0, 0, 0, 0.2);
+@mixin nav-item-active {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+@mixin badge($color-var, $bg-var) {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var($color-var);
+  background: var($bg-var);
 }
 
 .glass-card { @include glass-card; }
+.glass-card-glow { @include glass-card-glow; }
 .glass-panel { @include glass-panel; }
 .glass-button { @include glass-button; }
-.neon-text { @include neon-text; }
-.neon-border { @include neon-border; }
+.btn-primary { @include btn-primary; }
+.stat-value { @include stat-value; }
+.badge-success { @include badge(--status-success, --status-success-bg); }
+.badge-warning { @include badge(--status-warning, --status-warning-bg); }
+.badge-error { @include badge(--status-error, --status-error-bg); }
+.badge-info { @include badge(--status-info, --status-info-bg); }
