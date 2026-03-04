@@ -20,6 +20,11 @@ export class AppShellComponent implements OnInit {
     }
   }
 
+  get showAvatar(): boolean {
+    const p = this.userStore.profile();
+    return !!(p?.avatarUrl && p.useAvatar);
+  }
+
   get userInitials(): string {
     const p = this.userStore.profile();
     if (!p) return 'A';

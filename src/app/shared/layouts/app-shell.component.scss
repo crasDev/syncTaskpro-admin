@@ -146,6 +146,7 @@
   height: 36px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,6 +155,12 @@
   font-weight: 600;
   color: var(--color-text-muted);
   cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .content {
