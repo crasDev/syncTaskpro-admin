@@ -71,3 +71,30 @@
   --status-info: #60A5FA;
   --status-info-bg: rgba(96, 165, 250, 0.10);
 }
+
+// ── Light Mode ──
+body.theme-light {
+  --bg-base: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F1F5F9;
+
+  --glow-primary: rgba(255, 45, 85, 0.06);
+  --glow-secondary: rgba(139, 92, 246, 0.04);
+  --glow-accent: rgba(255, 45, 85, 0.03);
+
+  --glass-bg: rgba(255, 255, 255, 0.70);
+  --glass-bg-hover: rgba(255, 255, 255, 0.80);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-border-hover: rgba(255, 45, 85, 0.30);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --glass-glow-shadow: 0 8px 32px rgba(255, 45, 85, 0.06);
+
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.55);
+  --text-tertiary: rgba(0, 0, 0, 0.30);
+
+  --status-success-bg: rgba(52, 211, 153, 0.12);
+  --status-warning-bg: rgba(251, 191, 36, 0.12);
+  --status-error-bg: rgba(248, 113, 113, 0.12);
+  --status-info-bg: rgba(96, 165, 250, 0.12);
+}
