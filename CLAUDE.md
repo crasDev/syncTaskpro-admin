@@ -87,6 +87,15 @@ Auth0 credentials are configured in environment files + assets/env.js.
 
 ---
 
+## Component File Convention
+
+Every component uses separate files — never inline templates or styles:
+- `*.component.ts` — Logic only (templateUrl + styleUrl)
+- `*.component.html` — Template
+- `*.component.scss` — Styles
+
+---
+
 ## Key Decisions
 
 - All components are standalone (no NgModules)

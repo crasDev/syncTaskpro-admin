@@ -6,42 +6,8 @@ import { combineLatest, filter, take } from 'rxjs';
 @Component({
   selector: 'app-callback',
   standalone: true,
-  template: `
-    <div class="callback">
-      <div class="spinner"></div>
-      <p>Signing you in...</p>
-    </div>
-  `,
-  styles: [`
-    .callback {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      background: var(--color-bg-primary, #060B14);
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top: 3px solid var(--color-primary, #FF2D55);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    p {
-      color: var(--color-text-muted, #4A6FA5);
-      font-family: var(--font-body, 'Inter', sans-serif);
-      font-size: 14px;
-    }
-  `],
+  templateUrl: './callback.component.html',
+  styleUrl: './callback.component.scss',
 })
 export class CallbackComponent implements OnInit {
   private auth = inject(AuthService);
