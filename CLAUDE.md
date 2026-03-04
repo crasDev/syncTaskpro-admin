@@ -25,14 +25,19 @@ Read the master CLAUDE.md at `/SyncTaskPro/CLAUDE.md` first — always.
 
 ## Design System
 
-Glassmorphism dark theme with red accent (#dc2626).
-Same design system as syncTaskpro-web but with red branding to
-clearly distinguish admin from client app.
+Glassmorphism dark theme with red accent (#FF2D55).
+Same design token architecture as syncTaskpro-web but with red branding
+to clearly distinguish admin from client app. Single mode (no switching).
+
+Fonts: Sora (display/headings), Inter (body text) — loaded from Google Fonts.
+
+Login page features animated red particle orbs, "ADMIN CONSOLE" neon badge,
+glass login card, and audit warning strip.
 
 Style files:
 - `src/styles/_variables.scss` — CSS custom properties (red accent palette)
-- `src/styles/_glass.scss` — SCSS mixins (glass-card, glass-panel, glass-button, glass-input)
-- `src/styles/_typography.scss` — Inter font, heading/paragraph styles
+- `src/styles/_glass.scss` — SCSS mixins (glass-card, glass-panel, glass-button, glass-input, neon-text, neon-border)
+- `src/styles/_typography.scss` — Sora + Inter font, heading/paragraph styles
 - `src/styles.scss` — Imports all + Tailwind + scrollbar + reset
 
 ---
@@ -66,8 +71,8 @@ All authenticated routes are under `/admin/`:
 - `/admin/tenants` — Manage registered companies
 - `/admin/users` — Manage platform users
 - `/admin/support` — Support ticket management
-- `/login` — Auth0 login (under auth layout)
-- `/callback` — Auth0 redirect handler
+- `/login` — Auth0 login (standalone, not under auth layout — full-page red-themed login)
+- `/callback` — Auth0 redirect handler (standalone)
 
 ---
 
@@ -94,4 +99,4 @@ Auth0 won't work until environment.ts has real domain + clientId values.
 
 ## Last Updated
 Date: 2026-03-03
-Session: Scaffold frontends
+Session: Visual identity and landing pages

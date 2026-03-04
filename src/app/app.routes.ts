@@ -2,15 +2,16 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
+  // Auth routes — admin goes straight to login
   {
-    path: '',
-    loadComponent: () =>
-      import('./shared/layouts/auth-layout.component').then(m => m.AuthLayoutComponent),
-    children: [
-      { path: 'login', loadComponent: () => import('./features/auth/login.component').then(m => m.LoginComponent) },
-      { path: 'callback', loadComponent: () => import('./features/auth/callback.component').then(m => m.CallbackComponent) },
-    ],
+    path: 'login',
+    loadComponent: () => import('./features/auth/login.component').then(m => m.LoginComponent),
   },
+  {
+    path: 'callback',
+    loadComponent: () => import('./features/auth/callback.component').then(m => m.CallbackComponent),
+  },
+  // Authenticated admin routes
   {
     path: 'admin',
     loadComponent: () =>
@@ -24,5 +25,5 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

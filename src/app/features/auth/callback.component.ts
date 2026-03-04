@@ -17,13 +17,14 @@ import { Component } from '@angular/core';
       align-items: center;
       justify-content: center;
       gap: 16px;
+      background: var(--color-bg-primary);
     }
 
     .spinner {
       width: 40px;
       height: 40px;
       border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top: 3px solid var(--color-accent);
+      border-top: 3px solid var(--color-primary);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -34,6 +35,7 @@ import { Component } from '@angular/core';
 
     p {
       color: var(--color-text-muted);
+      font-family: var(--font-body);
       font-size: 14px;
     }
   `],

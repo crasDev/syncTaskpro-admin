@@ -10,7 +10,11 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       <aside class="sidebar">
         <div class="sidebar-header">
           <div class="logo">
-            <span class="logo-icon">S</span>
+            <img
+              src="assets/images/logo-full.png"
+              alt="SyncTaskPro"
+              class="logo-img"
+            />
             <span class="logo-text">SyncTaskPro <span class="badge">Admin</span></span>
           </div>
         </div>
@@ -77,21 +81,14 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       gap: 12px;
     }
 
-    .logo-icon {
+    .logo-img {
       width: 36px;
       height: 36px;
-      background: var(--color-accent);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-      color: white;
-      box-shadow: 0 0 20px var(--color-accent-glow);
+      filter: drop-shadow(0 0 12px var(--color-accent-glow));
     }
 
     .logo-text {
+      font-family: var(--font-display);
       font-size: 18px;
       font-weight: 700;
       color: var(--color-text-primary);
@@ -100,7 +97,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     .badge {
       font-size: 10px;
       font-weight: 600;
-      background: var(--color-accent);
+      background: var(--color-primary);
       color: white;
       padding: 2px 6px;
       border-radius: 4px;
@@ -115,6 +112,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     }
 
     .nav-section-title {
+      font-family: var(--font-display);
       font-size: 11px;
       font-weight: 600;
       color: var(--color-text-muted);
@@ -127,9 +125,10 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       align-items: center;
       gap: 12px;
       padding: 10px 12px;
-      border-radius: var(--radius-sm);
+      border-radius: var(--glass-radius-sm);
       color: var(--color-text-muted);
       text-decoration: none;
+      font-family: var(--font-body);
       font-size: 14px;
       font-weight: 500;
       transition: all 0.15s ease;
@@ -141,8 +140,8 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       }
 
       &.active {
-        background: rgba(220, 38, 38, 0.15);
-        color: var(--color-accent);
+        background: var(--color-accent-glow);
+        color: var(--color-primary);
       }
     }
 
@@ -164,9 +163,10 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
     }
 
     .topbar-title {
+      font-family: var(--font-display);
       font-size: 14px;
       font-weight: 600;
-      color: var(--color-text-secondary);
+      color: var(--color-text-muted);
     }
 
     .user-avatar {
@@ -177,6 +177,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: var(--font-body);
       font-size: 14px;
       font-weight: 600;
       color: var(--color-text-muted);
