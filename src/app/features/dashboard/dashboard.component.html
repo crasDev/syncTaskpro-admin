@@ -1,23 +1,45 @@
 <div class="dashboard">
-  <h2>Admin Dashboard</h2>
-  <p class="subtitle">Platform overview</p>
+  <!-- Welcome Card -->
+  <div class="welcome-card glass-card">
+    <div class="welcome-text">
+      <h2>Admin Dashboard</h2>
+      <p class="welcome-date">{{ today | date:'EEEE, MMMM d, y' }}</p>
+    </div>
+  </div>
 
-  <div class="cards">
-    <div class="stat-card">
+  <!-- Stats Grid -->
+  <div class="stats-grid">
+    <div class="stat-card glass-card-glow">
       <div class="stat-label">Total Tenants</div>
       <div class="stat-value">--</div>
+      <div class="stat-trend neutral">Awaiting setup</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card glass-card-glow">
       <div class="stat-label">Active Users</div>
       <div class="stat-value">--</div>
+      <div class="stat-trend neutral">Awaiting setup</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card glass-card-glow">
       <div class="stat-label">Open Tickets</div>
       <div class="stat-value">--</div>
+      <div class="stat-trend neutral">Awaiting setup</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card glass-card-glow">
       <div class="stat-label">System Health</div>
       <div class="stat-value health-ok">OK</div>
+      <div class="stat-trend up">All systems operational</div>
+    </div>
+  </div>
+
+  <!-- Bottom Grid -->
+  <div class="bottom-grid">
+    <div class="section-card glass-card">
+      <h3>Platform Activity</h3>
+      <p class="placeholder-text">Recent platform events will appear here.</p>
+    </div>
+    <div class="section-card glass-card">
+      <h3>System Alerts</h3>
+      <p class="placeholder-text">System alerts and notifications will appear here.</p>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-bg-primary, #060B14);
+  background: var(--bg-base, #060B14);
 }
 
 .glass-card {
@@ -31,7 +31,7 @@ h1 {
 }
 
 p {
-  color: var(--color-text-muted, #4A6FA5);
+  color: var(--text-secondary, #4A6FA5);
   font-size: 14px;
   line-height: 1.6;
   margin: 0 0 8px;

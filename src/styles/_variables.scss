@@ -1,35 +1,100 @@
 // ═══════════════════════════════════════════════
-// SyncTaskPro Admin — Design Tokens
-// Red accent for admin mode
+// SyncTaskPro Admin — Design Tokens — Refined Glassmorphism
+// Red accent for admin mode (single mode, no switching)
 // ═══════════════════════════════════════════════
 
 :root {
-  // Shared tokens
-  --color-text-primary: #F0F8FF;
-  --color-text-muted: #4A6FA5;
-  --color-text-dim: #1E3A5F;
-  --color-success: #00FF9D;
-  --color-warning: #FFB800;
-  --color-error: #FF2D55;
-
+  // Glass
   --glass-blur: 16px;
   --glass-radius: 16px;
   --glass-radius-sm: 8px;
   --glass-radius-lg: 24px;
 
+  // Typography
   --font-display: 'Sora', sans-serif;
   --font-body: 'Inter', sans-serif;
 
+  // Layout
   --sidebar-width: 260px;
   --topbar-height: 64px;
 
-  // Admin mode tokens (red accent)
-  --color-primary: #FF2D55;
-  --color-secondary: #CC1033;
-  --color-accent-glow: rgba(255, 45, 85, 0.35);
-  --color-bg-primary: #0F0407;
-  --color-bg-secondary: #140509;
-  --color-glass-bg: rgba(255, 45, 85, 0.06);
-  --color-glass-border: rgba(255, 45, 85, 0.15);
-  --color-glass-highlight: rgba(255, 45, 85, 0.08);
+  // Spacing scale
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  // Transition
+  --transition-fast: 200ms ease;
+  --transition-base: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  // Background
+  --bg-base: #07090F;
+  --bg-surface: #0D1117;
+  --bg-elevated: #131820;
+
+  // Ambient glow (behind glass)
+  --glow-primary: rgba(255, 45, 85, 0.12);
+  --glow-secondary: rgba(139, 92, 246, 0.08);
+  --glow-accent: rgba(255, 45, 85, 0.06);
+
+  // Accent
+  --accent: #FF2D55;
+  --accent-dim: #CC1033;
+  --accent-subtle: rgba(255, 45, 85, 0.08);
+
+  // Glass
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 45, 85, 0.25);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-glow-shadow: 0 8px 32px rgba(255, 45, 85, 0.08);
+
+  // Text hierarchy
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-tertiary: rgba(255, 255, 255, 0.30);
+  --text-accent: #FF2D55;
+
+  // Status
+  --status-success: #34D399;
+  --status-success-bg: rgba(52, 211, 153, 0.10);
+  --status-warning: #FBBF24;
+  --status-warning-bg: rgba(251, 191, 36, 0.10);
+  --status-error: #F87171;
+  --status-error-bg: rgba(248, 113, 113, 0.10);
+  --status-info: #60A5FA;
+  --status-info-bg: rgba(96, 165, 250, 0.10);
+}
+
+// ── Light Mode ──
+body.theme-light {
+  --bg-base: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F1F5F9;
+
+  --glow-primary: rgba(255, 45, 85, 0.06);
+  --glow-secondary: rgba(139, 92, 246, 0.04);
+  --glow-accent: rgba(255, 45, 85, 0.03);
+
+  --glass-bg: rgba(255, 255, 255, 0.70);
+  --glass-bg-hover: rgba(255, 255, 255, 0.80);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-border-hover: rgba(255, 45, 85, 0.30);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --glass-glow-shadow: 0 8px 32px rgba(255, 45, 85, 0.06);
+
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.55);
+  --text-tertiary: rgba(0, 0, 0, 0.30);
+
+  --status-success-bg: rgba(52, 211, 153, 0.12);
+  --status-warning-bg: rgba(251, 191, 36, 0.12);
+  --status-error-bg: rgba(248, 113, 113, 0.12);
+  --status-info-bg: rgba(96, 165, 250, 0.12);
 }
