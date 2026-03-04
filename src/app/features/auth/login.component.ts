@@ -28,7 +28,7 @@ import { AuthService } from '@auth0/auth0-angular';
             This console is restricted to SyncTaskPro administrators.
           </p>
           <button class="login-button" (click)="login()">
-            Login with Auth0
+            Sign in
           </button>
         </div>
 

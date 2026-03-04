@@ -18,7 +18,6 @@ export const appConfig: ApplicationConfig = {
       clientId: env.AUTH0_ADMIN_CLIENT_ID || environment.auth0.clientId,
       authorizationParams: {
         redirect_uri: environment.auth0.redirectUri,
-        audience: environment.auth0.audience,
         scope: 'openid profile email',
       },
       cacheLocation: 'memory',
