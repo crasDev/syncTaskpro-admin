@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { UserStore } from '../../core/identity/user.store';
 
 @Component({
   selector: 'app-shell',
@@ -9,8 +10,26 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.scss',
 })
-export class AppShellComponent {
+export class AppShellComponent implements OnInit {
   private auth = inject(AuthService);
+  userStore = inject(UserStore);
+
+  ngOnInit(): void {
+    if (!this.userStore.profile()) {
+      this.userStore.loadProfile();
+    }
+  }
+
+  get showAvatar(): boolean {
+    const p = this.userStore.profile();
+    return !!(p?.avatarUrl && p.useAvatar);
+  }
+
+  get userInitials(): string {
+    const p = this.userStore.profile();
+    if (!p) return 'A';
+    return (p.firstName?.[0] ?? '') + (p.lastName?.[0] ?? '');
+  }
 
   logout(): void {
     this.auth.logout({ logoutParams: { returnTo: window.location.origin } });
