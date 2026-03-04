@@ -114,4 +114,4 @@ Every component uses separate files — never inline templates or styles:
 
 ## Last Updated
 Date: 2026-03-04
-Session: Auth0 integration — double admin guard, unauthorized page
+Session: Identity — UserStore, UserProfileService, topbar real user data
