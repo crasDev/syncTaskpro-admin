@@ -1,0 +1,79 @@
+<div class="audit-page">
+  <div class="page-header">
+    <h1>Audit Log</h1>
+    <span class="total-badge">{{ totalCount() }} entries</span>
+  </div>
+
+  <div class="filters">
+    <select class="filter-select" (change)="onCategoryChange($event)">
+      @for (cat of categories; track cat.label) {
+        <option [value]="cat.value !== undefined ? cat.value : ''">{{ cat.label }}</option>
+      }
+    </select>
+    <select class="filter-select" (change)="onSeverityChange($event)">
+      @for (sev of severities; track sev.label) {
+        <option [value]="sev.value !== undefined ? sev.value : ''">{{ sev.label }}</option>
+      }
+    </select>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">Loading audit entries...</div>
+  } @else if (entries().length === 0) {
+    <div class="empty-state">No audit entries found</div>
+  } @else {
+    <div class="table-wrapper">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Actor</th>
+            <th>Action</th>
+            <th>Category</th>
+            <th>Severity</th>
+            <th>Entity</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (entry of entries(); track entry.id) {
+            <tr>
+              <td class="col-time">{{ entry.timestamp | date:'short' }}</td>
+              <td class="col-actor">{{ entry.actorEmail || entry.actorUserId }}</td>
+              <td class="col-action">{{ entry.action }}</td>
+              <td><span class="category-badge">{{ getCategoryLabel(entry.category) }}</span></td>
+              <td>
+                <span class="severity-badge" [class]="getSeverityClass(entry.severity)">
+                  {{ getSeverityLabel(entry.severity) }}
+                </span>
+              </td>
+              <td class="col-entity">
+                @if (entry.entityType) {
+                  <span class="entity-type">{{ entry.entityType }}</span>
+                  @if (entry.entityName) {
+                    <span class="entity-name">{{ entry.entityName }}</span>
+                  }
+                } @else {
+                  <span class="text-muted">-</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    @if (totalPages() > 1) {
+      <div class="pagination">
+        <button
+          class="page-btn"
+          [disabled]="page() <= 1"
+          (click)="goToPage(page() - 1)">Previous</button>
+        <span class="page-info">Page {{ page() }} of {{ totalPages() }}</span>
+        <button
+          class="page-btn"
+          [disabled]="page() >= totalPages()"
+          (click)="goToPage(page() + 1)">Next</button>
+      </div>
+    }
+  }
+</div>

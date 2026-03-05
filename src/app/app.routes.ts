@@ -28,6 +28,7 @@ export const routes: Routes = [
       { path: 'companies/:id', loadComponent: () => import('./features/companies/company-detail/company-detail.component').then(m => m.CompanyDetailComponent) },
       { path: 'users', loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent) },
       { path: 'support', loadComponent: () => import('./features/support/support.component').then(m => m.SupportComponent) },
+      { path: 'audit', loadComponent: () => import('./features/audit/audit-log.component').then(m => m.AuditLogComponent) },
       { path: 'settings', loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent) },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
