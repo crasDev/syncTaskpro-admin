@@ -32,7 +32,11 @@
                   <div class="member-cell">
                     <div class="avatar-sm">
                       @if (member.avatarUrl) {
-                        <img [src]="member.avatarUrl" [alt]="member.firstName" />
+                        <img
+                          [src]="member.avatarUrl"
+                          [alt]="member.firstName"
+                          (error)="member.avatarUrl = ''"
+                        />
                       } @else {
                         <span>{{ getInitials(member) }}</span>
                       }
