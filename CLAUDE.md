@@ -58,6 +58,7 @@ src/app/
     storage/        image-storage.service.ts (IndexedDB for custom backgrounds)
     interceptors/   auth.interceptor.ts, error.interceptor.ts
     tenancy/        admin-company.service.ts
+    audit/          admin-audit.service.ts (GET /api/admin/audit with category/severity filters)
     api/generated/  NSwag-generated client (gitignored, never edit)
   shared/
     layouts/        app-shell.component.ts (topbar + sidebar with Companies nav), auth-layout.component.ts
@@ -66,6 +67,7 @@ src/app/
     companies/
       company-list/    paged table with search/filter, tier badges
       company-detail/  read-only company info, audit fields
+    audit/          audit-log.component.ts (table view, category/severity filters, pagination)
     dashboard/      dashboard.component.ts (bento grid, stat cards)
     settings/       settings.component.ts (theme switcher, background customization)
     tenants/        tenants.component.ts
@@ -83,6 +85,7 @@ All authenticated routes are under `/admin/`:
 - `/admin/dashboard` — Platform overview (total tenants, active users, health)
 - `/admin/companies` — Paged company list with search/filter
 - `/admin/companies/:id` — Company detail (read-only)
+- `/admin/audit` — Audit log viewer with category/severity filters
 - `/admin/tenants` — Manage registered companies (legacy)
 - `/admin/users` — Manage platform users
 - `/admin/support` — Support ticket management
