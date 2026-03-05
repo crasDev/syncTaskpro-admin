@@ -57,11 +57,15 @@ src/app/
     theme/          theme.service.ts (theme scheme, background customization)
     storage/        image-storage.service.ts (IndexedDB for custom backgrounds)
     interceptors/   auth.interceptor.ts, error.interceptor.ts
+    tenancy/        admin-company.service.ts
     api/generated/  NSwag-generated client (gitignored, never edit)
   shared/
-    layouts/        app-shell.component.ts, auth-layout.component.ts
+    layouts/        app-shell.component.ts (topbar + sidebar with Companies nav), auth-layout.component.ts
   features/
     auth/           login.component.ts, callback.component.ts
+    companies/
+      company-list/    paged table with search/filter, tier badges
+      company-detail/  read-only company info, audit fields
     dashboard/      dashboard.component.ts (bento grid, stat cards)
     settings/       settings.component.ts (theme switcher, background customization)
     tenants/        tenants.component.ts
@@ -77,7 +81,9 @@ src/styles/         _variables.scss, _glass.scss, _typography.scss
 
 All authenticated routes are under `/admin/`:
 - `/admin/dashboard` — Platform overview (total tenants, active users, health)
-- `/admin/tenants` — Manage registered companies
+- `/admin/companies` — Paged company list with search/filter
+- `/admin/companies/:id` — Company detail (read-only)
+- `/admin/tenants` — Manage registered companies (legacy)
 - `/admin/users` — Manage platform users
 - `/admin/support` — Support ticket management
 - `/login` — Auth0 login (standalone, not under auth layout — full-page red-themed login)
@@ -125,4 +131,4 @@ Every component uses separate files — never inline templates or styles:
 
 ## Last Updated
 Date: 2026-03-04
-Session: Design system refinement — refined glassmorphism tokens, ambient backgrounds, theme switcher, settings page, dashboard bento grid
+Session: Tenancy context — admin company management (list, detail, search, navigation)
