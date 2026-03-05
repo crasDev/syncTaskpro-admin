@@ -1,0 +1,57 @@
+<div class="tab-content">
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <span>Loading invites...</span>
+    </div>
+  } @else {
+    <div class="table-header">
+      <span class="count">{{ totalCount() }} invite{{ totalCount() !== 1 ? 's' : '' }}</span>
+    </div>
+
+    @if (invites().length === 0) {
+      <div class="empty-state glass-card">
+        <p>No invites found.</p>
+      </div>
+    } @else {
+      <div class="table-wrapper glass-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Invited By</th>
+              <th>Created</th>
+              <th>Expires</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (invite of invites(); track invite.id) {
+              <tr>
+                <td class="mono">{{ invite.email }}</td>
+                <td>{{ getRoleLabel(invite.role) }}</td>
+                <td>
+                  <span class="invite-status" [class]="getStatusClass(invite.status)">
+                    {{ getStatusLabel(invite.status) }}
+                  </span>
+                </td>
+                <td>{{ invite.invitedByName || '-' }}</td>
+                <td>{{ invite.createdAt | date:'MMM d, y' }}</td>
+                <td>{{ invite.expiresAt | date:'MMM d, y' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      @if (totalPages() > 1) {
+        <div class="pagination">
+          <button class="page-btn" [disabled]="page() <= 1" (click)="prevPage()">Previous</button>
+          <span class="page-info">Page {{ page() }} of {{ totalPages() }}</span>
+          <button class="page-btn" [disabled]="page() >= totalPages()" (click)="nextPage()">Next</button>
+        </div>
+      }
+    }
+  }
+</div>

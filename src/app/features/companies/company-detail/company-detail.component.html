@@ -50,108 +50,28 @@
       </div>
     </div>
 
-    <!-- Details Grid -->
-    <div class="details-grid">
-      <!-- Company Info -->
-      <div class="detail-card glass-card">
-        <h3>Company Information</h3>
-        <div class="detail-list">
-          <div class="detail-row">
-            <span class="detail-label">Legal Name</span>
-            <span class="detail-value">{{ company()!.legalName || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Tax ID</span>
-            <span class="detail-value">{{ company()!.taxId || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Industry</span>
-            <span class="detail-value">{{ company()!.industryName || company()!.industry || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Employee Count</span>
-            <span class="detail-value">{{ company()!.employeeCount || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Founded</span>
-            <span class="detail-value">{{ company()!.foundedDate ? (company()!.foundedDate | date:'MMM d, y') : '-' }}</span>
-          </div>
-          @if (company()!.description) {
-            <div class="detail-row description-row">
-              <span class="detail-label">Description</span>
-              <span class="detail-value">{{ company()!.description }}</span>
-            </div>
-          }
-        </div>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="detail-card glass-card">
-        <h3>Contact & Location</h3>
-        <div class="detail-list">
-          <div class="detail-row">
-            <span class="detail-label">Country</span>
-            <span class="detail-value">{{ company()!.countryName || company()!.country || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">City</span>
-            <span class="detail-value">{{ company()!.city || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Address</span>
-            <span class="detail-value">{{ company()!.address || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Phone</span>
-            <span class="detail-value">{{ company()!.phoneNumber || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Email</span>
-            <span class="detail-value">{{ company()!.email || '-' }}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Website</span>
-            <span class="detail-value">
-              @if (company()!.website) {
-                <a [href]="company()!.website" target="_blank" rel="noopener" class="link">{{ company()!.website }}</a>
-              } @else {
-                -
-              }
-            </span>
-          </div>
-        </div>
-      </div>
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <button class="tab-btn" [class.active]="activeTab() === 'overview'" (click)="setTab('overview')">Overview</button>
+      <button class="tab-btn" [class.active]="activeTab() === 'members'" (click)="setTab('members')">Members</button>
+      <button class="tab-btn" [class.active]="activeTab() === 'invites'" (click)="setTab('invites')">Invites</button>
+      <button class="tab-btn" [class.active]="activeTab() === 'tools'" (click)="setTab('tools')">Admin Tools</button>
     </div>
 
-    <!-- Audit Info -->
-    <div class="audit-card glass-card">
-      <h3>Audit Information</h3>
-      <div class="audit-grid">
-        <div class="audit-item">
-          <span class="audit-label">Company ID</span>
-          <span class="audit-value mono">{{ company()!.id }}</span>
-        </div>
-        <div class="audit-item">
-          <span class="audit-label">Created At</span>
-          <span class="audit-value">{{ company()!.createdAt | date:'MMM d, y HH:mm' }}</span>
-        </div>
-        <div class="audit-item">
-          <span class="audit-label">Created By</span>
-          <span class="audit-value mono">{{ company()!.createdBy }}</span>
-        </div>
-        <div class="audit-item">
-          <span class="audit-label">Updated At</span>
-          <span class="audit-value">{{ company()!.updatedAt | date:'MMM d, y HH:mm' }}</span>
-        </div>
-        <div class="audit-item">
-          <span class="audit-label">Updated By</span>
-          <span class="audit-value mono">{{ company()!.updatedBy }}</span>
-        </div>
-        <div class="audit-item">
-          <span class="audit-label">Soft Deleted</span>
-          <span class="audit-value">{{ company()!.isDeleted ? 'Yes' : 'No' }}</span>
-        </div>
-      </div>
-    </div>
+    <!-- Tab Content -->
+    @switch (activeTab()) {
+      @case ('overview') {
+        <app-admin-overview-tab [company]="company()!" />
+      }
+      @case ('members') {
+        <app-admin-members-tab [companyId]="company()!.id" />
+      }
+      @case ('invites') {
+        <app-admin-invites-tab [companyId]="company()!.id" />
+      }
+      @case ('tools') {
+        <app-admin-tools-tab [company]="company()!" (updated)="onCompanyUpdated($event)" />
+      }
+    }
   }
 </div>
