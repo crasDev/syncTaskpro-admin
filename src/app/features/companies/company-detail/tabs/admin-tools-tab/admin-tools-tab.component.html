@@ -1,0 +1,50 @@
+<div class="tab-content">
+  @if (message()) {
+    <div class="toast glass-card">
+      {{ message() }}
+    </div>
+  }
+
+  <!-- Verification Card -->
+  <div class="tool-card glass-card">
+    <div class="tool-header">
+      <h3>Company Verification</h3>
+      <p class="tool-desc">Toggle the verified status of this company. Verified companies display a badge next to their name.</p>
+    </div>
+    <div class="tool-action">
+      <span class="current-value">
+        Currently: <strong>{{ company().isVerified ? 'Verified' : 'Not Verified' }}</strong>
+      </span>
+      <button
+        class="btn-tool"
+        [class.btn-danger]="company().isVerified"
+        [class.btn-success]="!company().isVerified"
+        [disabled]="saving()"
+        (click)="toggleVerification()">
+        {{ company().isVerified ? 'Remove Verification' : 'Verify Company' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Subscription Tier Card -->
+  <div class="tool-card glass-card">
+    <div class="tool-header">
+      <h3>Subscription Tier</h3>
+      <p class="tool-desc">Change the company's subscription tier. This affects feature access and billing.</p>
+    </div>
+    <div class="tier-grid">
+      @for (tier of tiers; track tier.value) {
+        <button
+          class="tier-option"
+          [class.active]="tier.value === company().subscriptionTier"
+          [disabled]="saving() || tier.value === company().subscriptionTier"
+          (click)="changeSubscription(tier.value)">
+          <span class="tier-label">{{ tier.label }}</span>
+          @if (tier.value === company().subscriptionTier) {
+            <span class="tier-current">Current</span>
+          }
+        </button>
+      }
+    </div>
+  </div>
+</div>

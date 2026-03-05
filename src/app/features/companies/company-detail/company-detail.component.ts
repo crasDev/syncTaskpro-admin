@@ -3,11 +3,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { AdminCompanyService } from '../../../core/tenancy/admin-company.service';
 import { CompanyDto, CompanyRole, SubscriptionTier } from '@synctaskpro/contracts';
+import { AdminOverviewTabComponent } from './tabs/admin-overview-tab/admin-overview-tab.component';
+import { AdminMembersTabComponent } from './tabs/admin-members-tab/admin-members-tab.component';
+import { AdminInvitesTabComponent } from './tabs/admin-invites-tab/admin-invites-tab.component';
+import { AdminToolsTabComponent } from './tabs/admin-tools-tab/admin-tools-tab.component';
+
+type TabId = 'overview' | 'members' | 'invites' | 'tools';
 
 @Component({
   selector: 'app-company-detail',
   standalone: true,
-  imports: [DatePipe],
+  imports: [
+    DatePipe,
+    AdminOverviewTabComponent,
+    AdminMembersTabComponent,
+    AdminInvitesTabComponent,
+    AdminToolsTabComponent,
+  ],
   templateUrl: './company-detail.component.html',
   styleUrl: './company-detail.component.scss',
 })
@@ -19,6 +31,7 @@ export class CompanyDetailComponent implements OnInit {
   company = signal<CompanyDto | null>(null);
   loading = signal(true);
   error = signal<string | null>(null);
+  activeTab = signal<TabId>('overview');
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -45,6 +58,14 @@ export class CompanyDetailComponent implements OnInit {
         this.loading.set(false);
       },
     });
+  }
+
+  setTab(tab: TabId): void {
+    this.activeTab.set(tab);
+  }
+
+  onCompanyUpdated(updated: CompanyDto): void {
+    this.company.set(updated);
   }
 
   goBack(): void {
