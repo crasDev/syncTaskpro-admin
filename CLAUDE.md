@@ -135,6 +135,18 @@ Every component uses separate files — never inline templates or styles:
 
 ---
 
+## Translation-First Rule (NON-NEGOTIABLE)
+
+See master CLAUDE.md for full details. Summary:
+
+- NEVER hardcode user-facing text — always use translation keys
+- ALL new keys go in en.json seed data first, then pt/es/fr
+- Key convention: `admin.[section].[subsection].[purpose]`
+- PRs must include "Translation Decisions" section
+- Note: admin panel templates not yet i18n-ized — will be converted in future session
+
+---
+
 ## Last Updated
 Date: 2026-03-06
 Session: Translation management — coverage matrix, namespace filter, inline key editing, auto-translate trigger, JSON export
