@@ -29,6 +29,7 @@ export const routes: Routes = [
       { path: 'users', loadComponent: () => import('./features/users/users.component').then(m => m.UsersComponent) },
       { path: 'support', loadComponent: () => import('./features/support/support.component').then(m => m.SupportComponent) },
       { path: 'audit', loadComponent: () => import('./features/audit/audit-log.component').then(m => m.AuditLogComponent) },
+      { path: 'translations', loadComponent: () => import('./features/translations/translations.component').then(m => m.TranslationsComponent) },
       { path: 'settings', loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent) },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],

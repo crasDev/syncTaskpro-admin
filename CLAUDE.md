@@ -59,6 +59,7 @@ src/app/
     interceptors/   auth.interceptor.ts, error.interceptor.ts
     tenancy/        admin-company.service.ts
     audit/          admin-audit.service.ts (GET /api/admin/audit with category/severity filters)
+    translations/   admin-translation.service.ts (keys CRUD, coverage, import/export, auto-translate trigger)
     api/generated/  NSwag-generated client (gitignored, never edit)
   shared/
     layouts/        app-shell.component.ts (topbar + sidebar with Companies nav), auth-layout.component.ts
@@ -68,6 +69,7 @@ src/app/
       company-list/    paged table with search/filter, tier badges
       company-detail/  read-only company info, audit fields
     audit/          audit-log.component.ts (table view, category/severity filters, pagination)
+    translations/   translations.component.ts (coverage matrix, namespace filter, inline key editing, auto-translate, JSON export)
     dashboard/      dashboard.component.ts (bento grid, stat cards)
     settings/       settings.component.ts (theme switcher, background customization)
     tenants/        tenants.component.ts
@@ -86,6 +88,7 @@ All authenticated routes are under `/admin/`:
 - `/admin/companies` — Paged company list with search/filter
 - `/admin/companies/:id` — Company detail (read-only)
 - `/admin/audit` — Audit log viewer with category/severity filters
+- `/admin/translations` — Translation management (coverage, keys, import/export, auto-translate)
 - `/admin/tenants` — Manage registered companies (legacy)
 - `/admin/users` — Manage platform users
 - `/admin/support` — Support ticket management
@@ -133,5 +136,5 @@ Every component uses separate files — never inline templates or styles:
 ---
 
 ## Last Updated
-Date: 2026-03-04
-Session: Tenancy context — admin company management (list, detail, search, navigation)
+Date: 2026-03-06
+Session: Translation management — coverage matrix, namespace filter, inline key editing, auto-translate trigger, JSON export
