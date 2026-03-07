@@ -1,0 +1,88 @@
+<div class="translations-page">
+  <div class="page-header">
+    <div>
+      <h1>Translation Management</h1>
+      <p class="subtitle">Manage translations across all supported locales</p>
+    </div>
+  </div>
+
+  <!-- Coverage Matrix -->
+  <div class="glass-card coverage-section">
+    <h2>Coverage</h2>
+    <div class="coverage-grid">
+      @for (c of coverage(); track c.locale) {
+        <div class="coverage-card" [class.active]="c.locale === selectedLocale()" (click)="selectLocale(c.locale)">
+          <div class="coverage-locale">{{ c.locale.toUpperCase() }}</div>
+          <div class="coverage-bar">
+            <div class="coverage-fill" [style.width.%]="c.coveragePercent"></div>
+          </div>
+          <div class="coverage-stats">
+            <span>{{ c.translatedKeys }}/{{ c.totalKeys }}</span>
+            <span class="coverage-pct">{{ c.coveragePercent }}%</span>
+          </div>
+          <div class="coverage-actions">
+            @if (c.locale !== 'en') {
+              <button class="btn-small" (click)="triggerAutoTranslate(c.locale); $event.stopPropagation()">Auto-translate</button>
+            }
+            <button class="btn-small" (click)="exportLocale(c.locale); $event.stopPropagation()">Export</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Namespace filter -->
+  <div class="filter-bar">
+    <button class="filter-btn" [class.active]="!selectedNamespace()" (click)="selectedNamespace.set(null)">All</button>
+    @for (ns of namespaces(); track ns) {
+      <button class="filter-btn" [class.active]="selectedNamespace() === ns" (click)="selectedNamespace.set(ns)">{{ ns }}</button>
+    }
+  </div>
+
+  <!-- Keys table -->
+  <div class="glass-card keys-section">
+    <h2>Keys — {{ selectedLocale().toUpperCase() }}
+      <span class="key-count">{{ filteredKeys().length }} keys</span>
+    </h2>
+
+    @if (isLoading()) {
+      <p class="loading">Loading translations...</p>
+    } @else {
+      <table class="keys-table">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (entry of filteredKeys(); track entry.key) {
+            <tr>
+              <td class="key-cell">{{ entry.key }}</td>
+              <td class="value-cell">
+                @if (editingKey() === entry.key) {
+                  <input class="edit-input" [(ngModel)]="editValue" (keyup.enter)="saveEdit(entry)" (keyup.escape)="cancelEdit()" />
+                } @else {
+                  <span (dblclick)="startEdit(entry)">{{ entry.value }}</span>
+                }
+              </td>
+              <td>
+                <span class="status-badge" [attr.data-status]="entry.status">{{ statusLabel(entry.status) }}</span>
+              </td>
+              <td class="actions-cell">
+                @if (editingKey() === entry.key) {
+                  <button class="btn-small btn-save" (click)="saveEdit(entry)">Save</button>
+                  <button class="btn-small" (click)="cancelEdit()">Cancel</button>
+                } @else {
+                  <button class="btn-small" (click)="startEdit(entry)">Edit</button>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>
